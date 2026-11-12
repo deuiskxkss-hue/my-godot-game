@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2uo24u16uw8s"
-path.s3tc="res://.godot/imported/Без названия (2).jpeg-3457d2c3f8fda8d3daa5d1aa565285b5.s3tc.ctex"
-path.etc2="res://.godot/imported/Без названия (2).jpeg-3457d2c3f8fda8d3daa5d1aa565285b5.etc2.ctex"
+uid="uid://da2ywq7tlnm1j"
+path.s3tc="res://.godot/imported/Без названия (2).jpeg-2be379ceef8bfe3cdd7ca7edb3be58d7.s3tc.ctex"
+path.etc2="res://.godot/imported/Без названия (2).jpeg-2be379ceef8bfe3cdd7ca7edb3be58d7.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://Без названия (2).jpeg"
-dest_files=["res://.godot/imported/Без названия (2).jpeg-3457d2c3f8fda8d3daa5d1aa565285b5.s3tc.ctex", "res://.godot/imported/Без названия (2).jpeg-3457d2c3f8fda8d3daa5d1aa565285b5.etc2.ctex"]
+source_file="res://addons/virtual_joystick_DX/Без названия (2).jpeg"
+dest_files=["res://.godot/imported/Без названия (2).jpeg-2be379ceef8bfe3cdd7ca7edb3be58d7.s3tc.ctex", "res://.godot/imported/Без названия (2).jpeg-2be379ceef8bfe3cdd7ca7edb3be58d7.etc2.ctex"]
 
 [params]
 
