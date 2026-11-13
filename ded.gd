@@ -11,10 +11,8 @@ func _ready() -> void:
 	add_to_group("ded")
 	player = get_tree().current_scene.find_child("Player", true, false)
 	
-	# Автоматически находим любую картинку в папках и надеваем на деда
-	auto_find_and_apply_texture()
+	apply_ded_material()
 	
-	# Подключаем музыку погони
 	chase_music = find_child("ChaseMusic", true, false)
 	if chase_music == null:
 		chase_music = AudioStreamPlayer3D.new()
@@ -23,34 +21,28 @@ func _ready() -> void:
 		if ResourceLoader.exists("res://chase.mp3"):
 			chase_music.stream = load("res://chase.mp3")
 
-func auto_find_and_apply_texture() -> void:
-	var folders = ["res://textures", "res://models", "res://"]
-	var loaded_tex: Texture2D = null
+func apply_ded_material() -> void:
+	var mat = StandardMaterial3D.new()
+	# Отключаем тени/блики, чтобы текстура была максимально яркой и чёткой на телефоне
+	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	
-	for folder in folders:
-		var dir = DirAccess.open(folder)
-		if dir:
-			dir.list_dir_begin()
-			var file_name = dir.get_next()
-			while file_name != "":
-				# Ищем любую картинку по началу или расширению (игнорируем icon.svg)
-				var lower = file_name.to_lower()
-				if not dir.current_is_dir() and not lower.ends_with(".import") and lower != "icon.svg":
-					if lower.ends_with(".png") or lower.ends_with(".jpg") or lower.ends_with(".jpeg") or lower.ends_with(".webp"):
-						var full_path = folder.path_join(file_name)
-						if ResourceLoader.exists(full_path):
-							loaded_tex = load(full_path)
-							break
-				file_name = dir.get_next()
-		if loaded_tex != null:
-			break
-			
-	if loaded_tex != null:
-		var mat = StandardMaterial3D.new()
-		mat.albedo_texture = loaded_tex
-		var meshes = find_children("*", "MeshInstance3D", true, false)
-		for mesh in meshes:
-			mesh.material_override = mat
+	# Пробуем загрузить картинку всеми доступными способами
+	var tex: Texture2D = null
+	if ResourceLoader.exists("res://Material_0_baseColor.jpeg"):
+		tex = load("res://Material_0_baseColor.jpeg")
+	elif ResourceLoader.exists("res://textures/Material_0_baseColor.jpeg"):
+		tex = load("res://textures/Material_0_baseColor.jpeg")
+		
+	if tex != null:
+		mat.albedo_texture = tex
+	else:
+		# Если картинка не упаковалась в APK — красим деда в мрачный тёмно-красный цвет
+		mat.albedo_color = Color(0.6, 0.15, 0.15)
+		
+	# Ищем все 3D-части внутри деда (включая внутренние сцены Sketchfab)
+	var meshes = find_children("*", "MeshInstance3D", true, true)
+	for mesh in meshes:
+		mesh.material_override = mat
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
