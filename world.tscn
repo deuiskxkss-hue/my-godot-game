@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://calt3b7445f5e"]
 
-[ext_resource type="Texture2D" uid="uid://cocg5imlwtk83" path="res://addons/virtual_joystick_DX/vjdx_asset_icon.png" id="1_fj7yv"]
 [ext_resource type="AudioStream" uid="uid://cisfbxqohqa55" path="res://01. Menu.mp3" id="1_ic0uy"]
 [ext_resource type="Texture2D" uid="uid://2uo24u16uw8s" path="res://Без названия (2).jpeg" id="1_wse8f"]
 [ext_resource type="Script" uid="uid://c0xvp6p6j1q15" path="res://player.gd" id="2_aqk2v"]
@@ -136,16 +135,19 @@ scale = Vector2(0.48545855, 0.42953008)
 texture_normal = ExtResource("3_aqk2v")
 action = "ui_accept"
 
-[node name="VjdxAssetIcon" type="Sprite2D" parent="CanvasLayer" unique_id=2005122297]
-position = Vector2(129, 468.99997)
-scale = Vector2(0.41992188, 0.35546875)
-texture = ExtResource("1_fj7yv")
-
 [node name="DoorTouchBtn" type="TouchScreenButton" parent="CanvasLayer" unique_id=1158723304]
 visible = false
 position = Vector2(884, 112)
 scale = Vector2(0.39257813, 0.34375)
 texture_normal = ExtResource("7_2o6r5")
+
+[node name="VirtualJoystick" type="VirtualJoystick" parent="CanvasLayer" unique_id=530592403]
+offset_left = -183.0
+offset_top = 116.0
+offset_right = 578.0
+offset_bottom = 658.0
+joystick_size = 219.0
+tip_size = 139.0
 
 [node name="Ded" type="CharacterBody3D" parent="." unique_id=783944881]
 transform = Transform3D(0.99228835, 0, 0.12395117, 0, 1, 0, -0.12395117, 0, 0.99228835, 0, 0.89677715, 5)
@@ -164,7 +166,7 @@ transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
 transform = Transform3D(2.9582622, 0, 2.9802322e-08, 0, 1.601171, 0, -5.9604645e-08, 0, 2.5290766, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_xiplf")
 
-[node name="Sketchfab_Scene" parent="Ded" unique_id=554096660 instance=ExtResource("8_gbfbk")]
+[node name="models" parent="Ded" unique_id=554096660 instance=ExtResource("8_gbfbk")]
 transform = Transform3D(-1.305819, 0, -0.00085920095, 0, 1.2475176, 0, 0.0008146018, 0, -1.3774369, -0.06766009, -0.11775565, 0.5416522)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Ded" unique_id=418052198]
